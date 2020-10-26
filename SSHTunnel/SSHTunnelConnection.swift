@@ -18,7 +18,7 @@ class SSHTunnelConnection: Operation {
     let remotePort: Int
     let connectionSocket: Socket
     
-    override internal(set) var isExecuting: Bool {
+    override var isExecuting: Bool {
         get {
             return _executing
         }
@@ -31,7 +31,7 @@ class SSHTunnelConnection: Operation {
         }
     }
     
-    override internal(set) var isFinished: Bool {
+    override var isFinished: Bool {
         get {
             return _finished
         }
@@ -107,7 +107,7 @@ class SSHTunnelConnection: Operation {
                 
                 var wr = 0
                 while wr < len {
-                    let i = send(self.connectionSocket, &sendBuffer + wr, len - wr, 0)
+                    let i = send(self.connectionSocket, &sendBuffer[wr], len - wr, 0)
                     wr += i
                 }
             }
