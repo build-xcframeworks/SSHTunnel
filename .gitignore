@@ -67,6 +67,9 @@ fastlane/screenshots
 fastlane/test_output
 
 
-libressl
+frameworks
 libressl.zip
 /__MACOSX
+/.DS_Store
+/SSHTunnel.xcodeproj/project.xcworkspace/xcshareddata
+/SSHTunnel/.DS_Store
