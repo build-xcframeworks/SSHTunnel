@@ -10,6 +10,7 @@
 		857257D8254724D800EBDD7D /* libssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857257D5254724D700EBDD7D /* libssl.xcframework */; };
 		857257D9254724D800EBDD7D /* libcrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857257D6254724D800EBDD7D /* libcrypto.xcframework */; };
 		857257DA254724D800EBDD7D /* libssh2.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857257D7254724D800EBDD7D /* libssh2.xcframework */; };
+		857257EB254736D300EBDD7D /* libssh2.h in Headers */ = {isa = PBXBuildFile; fileRef = 857257EA254736D300EBDD7D /* libssh2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F302195F1F506D0F00532BDC /* SSHTunnel.h in Headers */ = {isa = PBXBuildFile; fileRef = F302195D1F506D0F00532BDC /* SSHTunnel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3021AC81F50760F00532BDC /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3021AC71F50760F00532BDC /* libz.1.tbd */; };
 		F3021AD21F50773B00532BDC /* SSHTunnelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3021AD11F50773B00532BDC /* SSHTunnelDelegate.swift */; };
@@ -26,6 +27,7 @@
 		857257D5254724D700EBDD7D /* libssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libssl.xcframework; path = frameworks/libssl.xcframework; sourceTree = SOURCE_ROOT; };
 		857257D6254724D800EBDD7D /* libcrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcrypto.xcframework; path = frameworks/libcrypto.xcframework; sourceTree = SOURCE_ROOT; };
 		857257D7254724D800EBDD7D /* libssh2.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libssh2.xcframework; path = frameworks/libssh2.xcframework; sourceTree = SOURCE_ROOT; };
+		857257EA254736D300EBDD7D /* libssh2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "frameworks/libssh2.xcframework/ios-arm64/Headers/libssh2.h"; sourceTree = "<group>"; };
 		F302195A1F506D0F00532BDC /* SSHTunnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSHTunnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F302195D1F506D0F00532BDC /* SSHTunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTunnel.h; sourceTree = "<group>"; };
 		F302195E1F506D0F00532BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		F30219501F506D0F00532BDC = {
 			isa = PBXGroup;
 			children = (
+				857257EA254736D300EBDD7D /* libssh2.h */,
 				F302195C1F506D0F00532BDC /* SSHTunnel */,
 				F302195B1F506D0F00532BDC /* Products */,
 				F3021AC61F50760F00532BDC /* Frameworks */,
@@ -108,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F302195F1F506D0F00532BDC /* SSHTunnel.h in Headers */,
+				857257EB254736D300EBDD7D /* libssh2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
