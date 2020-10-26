@@ -152,7 +152,7 @@ public class SSHTunnel: SSHTunnelProtocol {
             return
         }
         
-        guard let userAuthList = libssh2_userauth_list(session, self.username, UInt32(self.username.characters.count)) else {
+        guard let userAuthList = libssh2_userauth_list(session, self.username, UInt32(self.username.count)) else {
             self.disconnect(withError: SSHTunnelError.SSH2AuthenticationError)
             return
         }
@@ -182,14 +182,14 @@ public class SSHTunnel: SSHTunnelProtocol {
             case let .password(password):
                 result = libssh2_userauth_password_ex(session,
                                                           self.username,
-                                                          UInt32(self.username.characters.count),
+                                                          UInt32(self.username.count),
                                                           password,
-                                                          UInt32(password.characters.count),
+                                                          UInt32(password.count),
                                                           nil)
             case let .certificate(publicKeyPath, privateKeyPath):
                 result = libssh2_userauth_publickey_fromfile_ex(session,
                                                                     self.username,
-                                                                    UInt32(self.username.characters.count),
+                                                                    UInt32(self.username.count),
                                                                     publicKeyPath.path,
                                                                     privateKeyPath.path,
                                                                     nil)
