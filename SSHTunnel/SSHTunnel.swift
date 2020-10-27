@@ -186,13 +186,13 @@ public class SSHTunnel: SSHTunnelProtocol {
                                                           password,
                                                           UInt32(password.count),
                                                           nil)
-            case let .certificate(publicKeyPath, privateKeyPath):
+            case let .certificate(privateKeyPath, passphrase):
                 result = libssh2_userauth_publickey_fromfile_ex(session,
                                                                     self.username,
                                                                     UInt32(self.username.count),
-                                                                    publicKeyPath.path,
+                                                                    nil,
                                                                     privateKeyPath.path,
-                                                                    nil)
+                                                                    passphrase)
             }
             
             if result != 0 {

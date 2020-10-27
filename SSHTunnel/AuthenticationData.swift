@@ -10,5 +10,5 @@ import Foundation
 
 public enum AuthenticationData {
     case password(password: String)
-    case certificate(publicKeyPath: URL, privateKeyPath: URL)
+    case certificate(privateKeyPath: URL, passphrase: String)
 }

@@ -1,0 +1,5 @@
+Create a config.json the tests can use. You can use config.json.sample as example
+
+What I like to use for testing a connection to is
+$ while true; do cat lorem.txt| nc -l 4321; echo "Again"; done
+That should pipe lorem.txt to any client connecting at port 4321

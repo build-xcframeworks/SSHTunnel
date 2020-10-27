@@ -1,0 +1,19 @@
+{
+	"default": {
+		"host": "tunnel.host.com",
+		"port": 22,
+		"username": "username",
+		"authentication": {
+			"privateKeyFile": "id_rsa",
+			"passphrase": "xxx"
+		},
+		"tunnels": [
+			{
+				"host": "10.0.1.13",
+				"port": 4321
+			}
+		]
+		
+	}
+	
+}

@@ -11,6 +11,10 @@
 		857257D9254724D800EBDD7D /* libcrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857257D6254724D800EBDD7D /* libcrypto.xcframework */; };
 		857257DA254724D800EBDD7D /* libssh2.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857257D7254724D800EBDD7D /* libssh2.xcframework */; };
 		857257EB254736D300EBDD7D /* libssh2.h in Headers */ = {isa = PBXBuildFile; fileRef = 857257EA254736D300EBDD7D /* libssh2.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		857257F8254879AD00EBDD7D /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857257F7254879AD00EBDD7D /* IntegrationTests.swift */; };
+		857257FA254879AD00EBDD7D /* SSHTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F302195A1F506D0F00532BDC /* SSHTunnel.framework */; };
+		8572580725487B1D00EBDD7D /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 8572580625487B1D00EBDD7D /* config.json */; };
+		8572580E25487C0000EBDD7D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572580D25487C0000EBDD7D /* Config.swift */; };
 		F302195F1F506D0F00532BDC /* SSHTunnel.h in Headers */ = {isa = PBXBuildFile; fileRef = F302195D1F506D0F00532BDC /* SSHTunnel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3021AC81F50760F00532BDC /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3021AC71F50760F00532BDC /* libz.1.tbd */; };
 		F3021AD21F50773B00532BDC /* SSHTunnelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3021AD11F50773B00532BDC /* SSHTunnelDelegate.swift */; };
@@ -23,11 +27,26 @@
 		F3280E9D1F57411F0063DB38 /* Fd_set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3280E9C1F57411F0063DB38 /* Fd_set+Extensions.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		857257FB254879AD00EBDD7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F30219511F506D0F00532BDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F30219591F506D0F00532BDC;
+			remoteInfo = SSHTunnel;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		857257D5254724D700EBDD7D /* libssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libssl.xcframework; path = frameworks/libssl.xcframework; sourceTree = SOURCE_ROOT; };
 		857257D6254724D800EBDD7D /* libcrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcrypto.xcframework; path = frameworks/libcrypto.xcframework; sourceTree = SOURCE_ROOT; };
 		857257D7254724D800EBDD7D /* libssh2.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libssh2.xcframework; path = frameworks/libssh2.xcframework; sourceTree = SOURCE_ROOT; };
 		857257EA254736D300EBDD7D /* libssh2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "frameworks/libssh2.xcframework/ios-arm64/Headers/libssh2.h"; sourceTree = "<group>"; };
+		857257F5254879AD00EBDD7D /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		857257F7254879AD00EBDD7D /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
+		857257F9254879AD00EBDD7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8572580625487B1D00EBDD7D /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		8572580D25487C0000EBDD7D /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		F302195A1F506D0F00532BDC /* SSHTunnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSHTunnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F302195D1F506D0F00532BDC /* SSHTunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTunnel.h; sourceTree = "<group>"; };
 		F302195E1F506D0F00532BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +62,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		857257F2254879AD00EBDD7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				857257FA254879AD00EBDD7D /* SSHTunnel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F30219561F506D0F00532BDC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,11 +84,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		857257F6254879AD00EBDD7D /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				8572580C25487BDF00EBDD7D /* TestConfig */,
+				8572580625487B1D00EBDD7D /* config.json */,
+				857257F7254879AD00EBDD7D /* IntegrationTests.swift */,
+				857257F9254879AD00EBDD7D /* Info.plist */,
+			);
+			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
+		8572580C25487BDF00EBDD7D /* TestConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8572580D25487C0000EBDD7D /* Config.swift */,
+			);
+			path = TestConfig;
+			sourceTree = "<group>";
+		};
 		F30219501F506D0F00532BDC = {
 			isa = PBXGroup;
 			children = (
 				857257EA254736D300EBDD7D /* libssh2.h */,
 				F302195C1F506D0F00532BDC /* SSHTunnel */,
+				857257F6254879AD00EBDD7D /* IntegrationTests */,
 				F302195B1F506D0F00532BDC /* Products */,
 				F3021AC61F50760F00532BDC /* Frameworks */,
 			);
@@ -71,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				F302195A1F506D0F00532BDC /* SSHTunnel.framework */,
+				857257F5254879AD00EBDD7D /* IntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +166,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		857257F4254879AD00EBDD7D /* IntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 857257FF254879AD00EBDD7D /* Build configuration list for PBXNativeTarget "IntegrationTests" */;
+			buildPhases = (
+				857257F1254879AD00EBDD7D /* Sources */,
+				857257F2254879AD00EBDD7D /* Frameworks */,
+				857257F3254879AD00EBDD7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				857257FC254879AD00EBDD7D /* PBXTargetDependency */,
+			);
+			name = IntegrationTests;
+			productName = IntegrationTests;
+			productReference = 857257F5254879AD00EBDD7D /* IntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F30219591F506D0F00532BDC /* SSHTunnel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F30219621F506D0F00532BDC /* Build configuration list for PBXNativeTarget "SSHTunnel" */;
@@ -142,9 +208,13 @@
 		F30219511F506D0F00532BDC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Lindell Digital";
 				TargetAttributes = {
+					857257F4254879AD00EBDD7D = {
+						CreatedOnToolsVersion = 12.0;
+					};
 					F30219591F506D0F00532BDC = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1200;
@@ -165,11 +235,20 @@
 			projectRoot = "";
 			targets = (
 				F30219591F506D0F00532BDC /* SSHTunnel */,
+				857257F4254879AD00EBDD7D /* IntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		857257F3254879AD00EBDD7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8572580725487B1D00EBDD7D /* config.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F30219581F506D0F00532BDC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,6 +259,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		857257F1254879AD00EBDD7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				857257F8254879AD00EBDD7D /* IntegrationTests.swift in Sources */,
+				8572580E25487C0000EBDD7D /* Config.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F30219551F506D0F00532BDC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,7 +285,58 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		857257FC254879AD00EBDD7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F30219591F506D0F00532BDC /* SSHTunnel */;
+			targetProxy = 857257FB254879AD00EBDD7D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		857257FD254879AD00EBDD7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D47QA73JUH;
+				INFOPLIST_FILE = IntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.build-xcframeworks.SSHTunnel.integration-tests.IntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		857257FE254879AD00EBDD7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D47QA73JUH;
+				INFOPLIST_FILE = IntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.build-xcframeworks.SSHTunnel.integration-tests.IntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F30219601F506D0F00532BDC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -343,7 +482,7 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = io.vokal.SSHTunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.build-xcframeworks.SSHTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -378,7 +517,7 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = io.vokal.SSHTunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.build-xcframeworks.SSHTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -390,6 +529,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		857257FF254879AD00EBDD7D /* Build configuration list for PBXNativeTarget "IntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				857257FD254879AD00EBDD7D /* Debug */,
+				857257FE254879AD00EBDD7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F30219541F506D0F00532BDC /* Build configuration list for PBXProject "SSHTunnel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
