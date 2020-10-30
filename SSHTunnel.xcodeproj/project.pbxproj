@@ -15,6 +15,7 @@
 		857257FA254879AD00EBDD7D /* SSHTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F302195A1F506D0F00532BDC /* SSHTunnel.framework */; };
 		8572580725487B1D00EBDD7D /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 8572580625487B1D00EBDD7D /* config.json */; };
 		8572580E25487C0000EBDD7D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572580D25487C0000EBDD7D /* Config.swift */; };
+		85A38B72254C0A1C00DF90B0 /* DNSServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38B71254C0A1C00DF90B0 /* DNSServiceError.swift */; };
 		F302195F1F506D0F00532BDC /* SSHTunnel.h in Headers */ = {isa = PBXBuildFile; fileRef = F302195D1F506D0F00532BDC /* SSHTunnel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3021AC81F50760F00532BDC /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3021AC71F50760F00532BDC /* libz.1.tbd */; };
 		F3021AD21F50773B00532BDC /* SSHTunnelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3021AD11F50773B00532BDC /* SSHTunnelDelegate.swift */; };
@@ -47,6 +48,7 @@
 		857257F9254879AD00EBDD7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8572580625487B1D00EBDD7D /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		8572580D25487C0000EBDD7D /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		85A38B71254C0A1C00DF90B0 /* DNSServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSServiceError.swift; sourceTree = "<group>"; };
 		F302195A1F506D0F00532BDC /* SSHTunnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSHTunnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F302195D1F506D0F00532BDC /* SSHTunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTunnel.h; sourceTree = "<group>"; };
 		F302195E1F506D0F00532BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				F3280E9A1F57021D0063DB38 /* SSHTunnelConnection.swift */,
 				F3280E981F561DFE0063DB38 /* Sockaddr+Extensions.swift */,
 				F3280E9C1F57411F0063DB38 /* Fd_set+Extensions.swift */,
+				85A38B71254C0A1C00DF90B0 /* DNSServiceError.swift */,
 			);
 			path = SSHTunnel;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A38B72254C0A1C00DF90B0 /* DNSServiceError.swift in Sources */,
 				F3021AD81F507A6E00532BDC /* SSHTunnelProtocol.swift in Sources */,
 				F3021AD21F50773B00532BDC /* SSHTunnelDelegate.swift in Sources */,
 				F3280E9D1F57411F0063DB38 /* Fd_set+Extensions.swift in Sources */,
@@ -460,6 +464,7 @@
 		F30219631F506D0F00532BDC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -495,6 +500,7 @@
 		F30219641F506D0F00532BDC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

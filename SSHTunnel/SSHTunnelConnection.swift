@@ -15,6 +15,7 @@ class SSHTunnelConnection: Operation {
     
     var channel: SSH2Channel?
     let session: SSH2Session
+    let remoteHost: String
     let remotePort: Int
     let connectionSocket: Socket
     
@@ -48,9 +49,10 @@ class SSHTunnelConnection: Operation {
         return true
     }
 
-    required init(session: SSH2Session, socket: Socket, remotePort: Int) {
+    required init(session: SSH2Session, socket: Socket, remoteHost: String = "localhost", remotePort: Int) {
         self.session = session
         self.connectionSocket = socket
+        self.remoteHost = remoteHost
         self.remotePort = remotePort
     }
 
@@ -62,7 +64,7 @@ class SSHTunnelConnection: Operation {
         
         isExecuting = true
 
-        self.channel = libssh2_channel_direct_tcpip_ex(self.session, "localhost", Int32(self.remotePort), "127.0.0.1", 22)
+        self.channel = libssh2_channel_direct_tcpip_ex(self.session, self.remoteHost, Int32(self.remotePort), "127.0.0.1", 22)
         libssh2_channel_set_blocking(self.channel, 0)
 
         // Select is exactly the wrong thing to be using now that individual connections are split out into
@@ -101,14 +103,31 @@ class SSHTunnelConnection: Operation {
                 var sendBuffer:Array<Int8> = Array(repeating: 0, count: bufferSize)
                 let len = libssh2_channel_read_ex(self.channel, 0, &sendBuffer, sendBuffer.capacity)
 
-                if Int32(len) == LIBSSH2_ERROR_EAGAIN {
+                if len < 0 {
+                    switch Int32(len) {
+                    case LIBSSH2_ERROR_SOCKET_NONE:
+                        print("This used to be a generic error message")
+                    case LIBSSH2_ERROR_EAGAIN:
+                        break
+                    default:
+                        print("Unhandled error: \(len)")
+                    }
+
                     break RECEIVER_LOOP
                 }
                 
                 var wr = 0
                 while wr < len {
-                    let i = send(self.connectionSocket, &sendBuffer[wr], len - wr, 0)
-                    wr += i
+                    var sub = Array<Int8>(sendBuffer[wr..<len])
+                    
+                    let i = send(self.connectionSocket, &sub, len - wr, 0)
+                    if i < 0 {
+                        print("Error while sending data")
+                        self.cancel()
+                        break
+                    } else {
+                        wr += i
+                    }
                 }
             }
         }

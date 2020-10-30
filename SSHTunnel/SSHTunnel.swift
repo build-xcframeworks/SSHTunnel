@@ -24,13 +24,14 @@ public enum SSHTunnelError: Error {
 
 public class SSHTunnel: SSHTunnelProtocol {
     let hostname: String
-    let remotePort: Int
+    let sshPort: Int
     let username: String
-    private(set) var sshPort: Int
+    private(set) var tunnelToPort: Int
     private(set) weak var delegate: SSHTunnelDelegate?
     private(set) var isConnected: Bool
     private(set) var localPort: Int?
     private(set) var remoteIP: String?
+    private(set) var tunnelToHost: String
 
     private var sshHostSocket: Socket?
     private var listeningSocket: Socket?
@@ -40,13 +41,14 @@ public class SSHTunnel: SSHTunnelProtocol {
     private var queue = DispatchQueue(label: "SSHTunnel", attributes: .concurrent)
     private var connections = OperationQueue()
     
-    required public init(toHostname hostname: String, port: Int, username: String, delegate: SSHTunnelDelegate, sshPort: Int = 22) {
+    required public init(toHostname hostname: String, port: Int, username: String, delegate: SSHTunnelDelegate, tunnelToHost: String = "localhost", tunnelToPort: Int = 22) {
         self.hostname = hostname
-        self.remotePort = port
+        self.sshPort = port
         self.username = username
         self.delegate = delegate
         self.isConnected = false
-        self.sshPort = sshPort
+        self.tunnelToHost = tunnelToHost
+        self.tunnelToPort = tunnelToPort
     }
     
     public func connect() {
@@ -95,7 +97,8 @@ public class SSHTunnel: SSHTunnelProtocol {
                 continue
             }
             
-            if Darwin.connect(sock, address.ai_addr, address.ai_addrlen) != 0 {
+            let connectResult = Darwin.connect(sock, address.ai_addr, address.ai_addrlen)
+            if connectResult != 0 {
                 continue
             }
             
@@ -261,7 +264,7 @@ public class SSHTunnel: SSHTunnelProtocol {
                 break
             }
             
-            let newConnection = SSHTunnelConnection(session: session, socket: requestDescriptor, remotePort: self.remotePort)
+            let newConnection = SSHTunnelConnection(session: session, socket: requestDescriptor, remoteHost: self.tunnelToHost, remotePort: self.tunnelToPort)
             self.connections.addOperation(newConnection)
         }
     }

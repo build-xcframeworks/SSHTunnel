@@ -25,9 +25,11 @@ class IntegrationTests: XCTestCase {
         class Delegate: SSHTunnelDelegate {
             
             let cfg: ConfigItem
+            let exp: XCTestExpectation
 
-            init(_ cfg: ConfigItem) {
+            init(_ cfg: ConfigItem, expectation exp: XCTestExpectation) {
                 self.cfg = cfg
+                self.exp = exp
             }
             
             func sshTunnel(_ sshTunnel: SSHTunnelProtocol, returnedFingerprint fingerprintData: String) {
@@ -45,9 +47,7 @@ class IntegrationTests: XCTestCase {
                 let port: NWEndpoint.Port = NWEndpoint.Port(rawValue: NWEndpoint.Port.RawValue(port))!
                 connection = NWConnection(host: "localhost", port: port, using: .tcp)
                 connection.stateUpdateHandler = self.stateDidChange(to:)
-                self.setupReceive(on: connection)
                 connection.start(queue: .global(qos: .background))
-
             }
             
             func sshTunnel(_ sshTunnel: SSHTunnelProtocol, didFailWithError error: Error) {
@@ -56,7 +56,30 @@ class IntegrationTests: XCTestCase {
             }
             
             func connectionDidFail(error: Error) {
-                print("connectionDidFail")
+                print("Delegate: connectionDidFail")
+                if let nwerror = error as? NWError {
+                    switch nwerror {
+                    case .posix(let posixErrorCode):
+                        print("Posix")
+
+                    case .dns(let dnsServiceErrorType):
+                        if let error = DNSServiceError(rawValue: dnsServiceErrorType) {
+                            switch error {
+                            case .noSuchRecord:
+                                print("Unknown host to tunnel to")
+                            default:
+                                print("Unhandled DNS error")
+                            }
+                        } else {
+                            print("Unknown DNS error")
+                        }
+                    
+                    case .tls(let osStatus):
+                        print("TLS")
+                    }
+                } else {
+                    print("Unknown error case")
+                }
             }
             
             func stateDidChange(to state: NWConnection.State) {
@@ -69,40 +92,32 @@ class IntegrationTests: XCTestCase {
                     break
                 case .ready:
                     print("Connected")
-                    
-                    connection.receive(minimumIncompleteLength: 1, maximumLength: 512) { (data, context, isComplete, error) in
-                        print("Got data:")
-                        if let data = data {
-                            print(String(data: data, encoding: .utf8)!)
-                        }
-                        if let error = error {
-                            print("Got error:")
-                            print(String(describing: error))
-                        }
-                        if isComplete {
-                            print("All done")
-                            self.connection.cancel()
-                        }
-                    }
-
+                    setupReceive(on: connection)
                 case .failed(let error):
                     self.connectionDidFail(error: error)
                 case .cancelled:
                     break
+                default:
+                    XCTFail("State enum has expanded since this test was written, imlpement it")
                 }
             }
             
-            func setupReceive(on connection: NWConnection) {
+            
+            var total = 0
+        func setupReceive(on connection: NWConnection) {
+                print("Ready to receive...")
                 connection.receive(minimumIncompleteLength: 1, maximumLength: 65536) { (data, contentContext, isComplete, error) in
                     if let data = data, !data.isEmpty {
-                        // … process the data …
-                        print("did receive \(data.count) bytes")
+                        self.total = self.total + data.count
+                        print("did receive \(data.count) bytes, total \(self.total)")
                     }
                     if isComplete {
                         // … handle end of stream …
                         print("EOF")
+                        self.exp.fulfill()
                     } else if let error = error {
                         // … handle error …
+                        print("Got error: \(String(describing: error))")
                         self.connectionDidFail(error: error)
                     } else {
                         self.setupReceive(on: connection)
@@ -110,13 +125,15 @@ class IntegrationTests: XCTestCase {
                 }
             }
         }
-        let delegate = Delegate(cfg)
+        let delegate = Delegate(cfg, expectation: exp)
+        
+        for t in cfg.tunnels {
+            tunnel = SSHTunnel(toHostname: cfg.host, port: cfg.port, username: cfg.username, delegate: delegate, tunnelToHost: t.host, tunnelToPort: t.port)
+            tunnel.connect()
+        }
         
         
-        tunnel = SSHTunnel(toHostname: cfg.host, port: cfg.port, username: cfg.username, delegate: delegate)
-        tunnel.connect()
-        
-        waitForExpectations(timeout: 25.0) { error in
+        waitForExpectations(timeout: 18.0) { error in
             XCTAssertNil(error)
             
         }

@@ -73,3 +73,4 @@ libressl.zip
 /.DS_Store
 /SSHTunnel.xcodeproj/project.xcworkspace/xcshareddata
 /SSHTunnel/.DS_Store
+/nano.save
