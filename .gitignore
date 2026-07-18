@@ -68,6 +68,8 @@ fastlane/test_output
 
 
 frameworks
+libressl-source
+libssh2-source
 libressl.zip
 /__MACOSX
 /.DS_Store
