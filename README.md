@@ -14,6 +14,18 @@ The delegate will then be called to interact with the server for session negotia
 
 This code is obviously very early, and any bug fixes/gaping security holes/code improvements are appreciated.
 
+### Building
+
+Build the LibreSSL and libssh2 dependencies, then create the iOS, iOS
+Simulator, and Mac Catalyst XCFramework slices:
+
+```sh
+bash fetch.sh
+bash buildFramework.sh
+```
+
+The resulting framework is written to `output/SSHTunnel.xcframework`.
+
 #### Known bugs/planned fixes
 
 - Account for non-fatal error handling (fixes issues with authentication)
